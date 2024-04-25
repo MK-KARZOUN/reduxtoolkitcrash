@@ -15,13 +15,16 @@ const AddTodo = () => {
   return (
     <div className="">
       <form className="flex justify-between gap-2" onSubmit={addTodoHandler}>
-        <input className="px-2"
+        <input
+          className="p-2 rounded-md"
           type="text"
           placeholder="Enter a Todo"
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        <button className="border bg-white p-1" type="submit">Add todo</button>
+        <button className="border bg-white p-2 rounded-md" type="submit">
+          Add todo
+        </button>
       </form>
     </div>
   );

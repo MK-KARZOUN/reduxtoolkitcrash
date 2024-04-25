@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeTodo, updateTodo } from "../features/todo/todoSlice";
+import { removeTodo, updateTodo, resetAll } from "../features/todo/todoSlice";
 
 const RenderTodos = () => {
   const todos = useSelector((state) => state.todoReducer.todos);
@@ -19,17 +19,21 @@ const RenderTodos = () => {
     );
   };
 
+  const handleReset = () => {
+    dispatch(resetAll());
+  };
+
   const todosList = todos?.map((todo) => (
     <div className="flex justify-between items-center gap-2" key={todo.id}>
       <input
-        className="text-center p-1"
+        className="text-center p-2 rounded-md"
         value={todo.text}
         onChange={(e) => {
           handleUpdateTodo(todo.id, e.target.value);
         }}
       />
       <button
-        className="bg-red-500 text-white p-1"
+        className="bg-red-500 text-white p-2 rounded-md"
         onClick={() => {
           handleDeleteTodo(todo.id);
         }}
@@ -40,9 +44,15 @@ const RenderTodos = () => {
   ));
 
   return (
-    <div className="flex flex-col gap-2">
-      <h1>Todos List</h1>
+    <div className="flex flex-col gap-2 ">
+      <h1 className="text-lg">Todos List</h1>
       {todosList}
+      <button
+        className="p-2 bg-gray-500 text-white rounded-md"
+        onClick={() => handleReset()}
+      >
+        reset
+      </button>
     </div>
   );
 };

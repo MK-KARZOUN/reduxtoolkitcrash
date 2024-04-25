@@ -27,9 +27,12 @@ export const todoSlice = createSlice({
       // Since we've updated the todo, we don't need to update the state array.
       // Redux Toolkit will detect this change and handle it properly.
     },
+    resetAll: (state) => {
+      state.todos = [];
+    },
   },
 });
 
-export const { addTodo, removeTodo, updateTodo } = todoSlice.actions;
+export const { addTodo, removeTodo, updateTodo, resetAll } = todoSlice.actions;
 
 export default todoSlice.reducer;
